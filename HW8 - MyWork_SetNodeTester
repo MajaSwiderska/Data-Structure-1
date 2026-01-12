@@ -1,0 +1,57 @@
+/**
+ * Test class for the SetNode class
+ * It demonstrates by creating multiple sets(4) and adding values to each set
+ * prints out the string representation of each set
+ */
+public class SetNodeTester {
+    /**
+     * The main method tests the programs functionality of the SetNode class by creating 4 sets
+     * adding elements to each set and printing the results at the end
+     *
+     * @param args Command line argument
+     */
+    public static void main(String[] args) {
+        SetNode set1 = new SetNode('m'); //creates set1 with 'm'
+        SetNode set2 = new SetNode('b'); //create set2 with 'b'
+        SetNode set3 = new SetNode('x'); //creates set3 with 'x'
+        SetNode set4 = new SetNode('g'); //creates set4 with 'g'
+
+        //adding values to set1
+        set1.add('b');
+        set1.add('w');
+        set1.add('z');
+        set1.add('m');
+        set1.add('a');
+        set1.add('z');
+        set1.add('m');
+        set1.add('c');
+
+        //adding values to set2
+        set2.add('a');
+        set2.add('f');
+        set2.add('b');
+        set2.add('d');
+        set2.add('c');
+        set2.add('e');
+
+        //adding values to set3
+        set3.add('p');
+        set3.add('y');
+        set3.add('a');
+        set3.add('r');
+        set3.add('z');
+
+        //adding values to set4
+        set4.add('d');
+        set4.add('g');
+        set4.add('o');
+        set4.add('g');
+        set4.add('k');
+
+        //printing out the contents of each set
+        System.out.println(set1); //should print set1 elements in a sorted order
+        System.out.println(set2); //should print set2 elements in a sorted order
+        System.out.println(set3); //should print set3 elements in a sorted order
+        System.out.println(set4); //should print set4 elements in a sorted order
+    }
+}

@@ -1,0 +1,24 @@
+import java.util.Arrays;
+
+public enum CompassPoint {
+    //enum values
+    N, NW, W, SW, S, SE, E, NE;
+
+    /**
+     * Method to turn the compass point to the right
+     * @return the next comoass point in the clockwise direction
+     */
+    public CompassPoint turnRight() {
+        //Calculates the next direction in my enum list
+        return values()[(this.ordinal() + 1) % values().length];
+    }
+
+    /**
+     * Method to reset the compass point to North
+     * @return the North compass point
+     */
+    public CompassPoint reset() {
+        //returns the N value of the enum
+        return N;
+    }
+}

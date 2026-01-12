@@ -1,0 +1,49 @@
+// This import the Scanner class for the user input
+import java.util.Scanner;
+
+public class Stock2Tester {
+    public static void main(String[] args) {
+        //Creating a Stockv2 obj for Google with default 0 shares/cost
+        Stockv2 stock1 = new Stockv2("GOOGLE");
+        //Creating a Stockv2 obj for Apple with 50 shares and 3000 cost
+        Stockv2 stock2 = new Stockv2("APPLE", 50, 3000);
+        //Creating a Stockv2 obj for AT&T with 150 shares and 2000 cost
+        Stockv2 stock3 = new Stockv2("AT&T", 150, 2000);
+
+        stock2.purchase(30, 400); //Stock2 obj stock2 makes a purchase of 30 shares at $400 per share
+        //After, stock2 will have 80 shares with a new total cost
+        stock3.purchase(50, 20); //Stock3 obj stock3 makes a purchase of 50 shares at $20 per share
+        //After, stock3 will have 200 shares with a new total cost
+
+        //These prints out the current state of all the stock obj
+        System.out.println(stock1); // Prints out that Google has 0 shares/cost
+        System.out.println(stock2); //Prints out that Apple has 80 shares and recalculates total cost
+        System.out.println(stock3); //Prints out that AT&T has 200 shares and recalculates total cost
+
+        //This sets a current price per share for profit calc
+        double currentPrice = 4000;
+        System.out.println("The profit for Google at $2800 per share: $" + stock2.getProfit(currentPrice));
+
+        //This checks if stock2 and stock3 are equal , using the override equals method
+        System.out.println("Stock2 equals stock3..." + stock2.equals(stock3));
+
+        //Creates a scanner obj to input the stock name to purchase it
+        Scanner scanner = new Scanner(System.in);
+
+        //Asks the user to input stock name to purchase
+        System.out.println("Please enter a stock name to purchase: ");
+        String stockName = scanner.nextLine(); //Reads the user input for stock name
+
+        //Asks the user to input the number of shares that they want to purchase
+        System.out.println("Please enter a number of shares to purchase: ");
+        int shares = scanner.nextInt(); //This reads the user input for the number of shares
+
+        //Asks the user to input the price per share
+        System.out.println("Please enter price per share: ");
+        double pricePerShare = scanner.nextDouble(); //This reads the user input for price per share
+
+        Stockv2 userStock = new Stockv2(stockName); //This creates a Stockv2 obj based on the stock name that's given by the user
+        userStock.purchase(shares, pricePerShare); //This runs the purchase with the number of shares and price per share that's been entered by the user
+        System.out.println(userStock); //This prints out all the stock purchases by the user
+    }
+}

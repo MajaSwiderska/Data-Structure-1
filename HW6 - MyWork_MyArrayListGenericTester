@@ -1,0 +1,37 @@
+public class MyArrayListGenericTester {
+    public static void main(String[] args) {
+        //new arrayList
+    MyArrayListGeneric<String> list = new MyArrayListGeneric<>();
+
+    list.add("Kiwi");
+    list.add("Mango");
+    list.add("Pineapple");
+    list.add("Strawberry");
+    list.add("Raspberry");
+    list.add("Black currant");
+
+    /*
+     * First Test indexOf method
+     * return the index of the element
+     */
+    int index = list.indexOf("Mango");
+    System.out.println("indexOf method test for Mango is: "+index);
+
+    /*
+     * Second Test contains method
+     * return a boolean if the element exist in the list
+     */
+    boolean containsRaspberry = list.contains("Raspberry");
+    System.out.println("indexOf method test for Raspberry"+containsRaspberry);
+
+    /*
+     * Third Test: remove method
+     * remove elements from your list
+     */
+    String removedElement = list.remove(3);
+    System.out.println("remove method test: "+removedElement);
+
+    //Prints out list
+    System.out.println("List after removal: "+list);
+    }
+}

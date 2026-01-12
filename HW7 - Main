@@ -1,0 +1,15 @@
+Purpose: Continue to explore how enum fits in to the OOP hierarchy. Practice using ArrayList as a collection. Understand and implement the Comparable interface.
+
+Turn in you .java files here: Compass.java and MyCompassListTester.java. Also include a separate file with the screen shot of your testing.
+
+The To Do: 
+
+Work with your latest Compass enum (if you still have main in it, remove it)
+Watch the video from module 3 called implementing comparable
+Determine what you need to do for your Compass enum to work similarly to what's shown in the video
+Create new test code called MyCompassListTester and create an array list of compass objects (at least 4 of them). Use the standard Java ArrayList implementation (not your own work to do MyArrayList)
+As in the video, print the ArrayList before and after sorting.
+Also try the contains method to look up a Compass object
+NOTE: The video working with OOP class means that what you will do to work with an enum may be different. Try all the steps shown in the video, analyze what you had to do, what's the same as the video, what's different. Record you findings in comments in main.
+Turn in a screen shot of the execution of your main showing sufficient output to prove Comparable is working for your enum
+Remember- you are a good OOP designer.  Keep good encapsulation. 

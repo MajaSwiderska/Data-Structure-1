@@ -1,0 +1,40 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class CompassPointTest {
+    public static void main(String[] args) {
+        //This creates a ArrayList to store all my compass objects
+        ArrayList<CompassPoint> compassList = new ArrayList<>();
+
+        //I'm adding compass directions to my list
+        compassList.add(CompassPoint.NW);
+        compassList.add(CompassPoint.S);
+        compassList.add(CompassPoint.NE);
+        compassList.add(CompassPoint.E);
+
+        //this prints out my list before it sorts
+        System.out.println("Before sorting compass points: " + compassList);
+
+        /**
+         * sorting the listing with using the collections.sort() method
+         * Basically enums are inherently comparable so no custom comparator is needed at all
+         */
+        Collections.sort(compassList);
+        //This prints the list after it sorts
+        System.out.println("After sorting compass list: " + compassList);
+
+        //This checks if the list does contain a specific direction
+        CompassPoint findDirections = CompassPoint.NE;
+
+        /**
+         * This checks if the list contains the direction NE
+         * If it does contain NE, it prints that the direction is found
+         * If not it prints that it's not in the list otherwise
+         */
+        if (compassList.contains(findDirections)) {
+            System.out.println("This list has:" + findDirections);
+        }else{
+            System.out.println("This list doesn't have: " + findDirections);
+        }
+    }
+}

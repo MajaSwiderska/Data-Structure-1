@@ -1,0 +1,48 @@
+/*
+ * This class represents a individual item to be ordered from the grocery list
+ * And each item does have a quantity/name/ price per every item
+ * It also calc. the total price of every item and to make sure it updates the quanity of the items everytime this runs.
+ */
+public class GroceryItemList {
+    private String name;
+    private double pricePerUnit;
+    private int quantity;
+  /*
+   * This can be a constructor to make a new item order with a name/quantity/price
+   */
+    public GroceryItemOrder(String name, double pricePerUnit, int quantity) {
+        this.name = name;
+        this.pricePerUnit = pricePerUnit;
+        this.quantity = quantity;
+    }
+    /*
+     *This returns the total price of the item in the list
+     */
+    public double getCost() {
+        return quantity * pricePerUnit;
+    }
+    /*
+     * This can set the quantity of the item in the grocery list
+     */
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+}
+    /*
+     *The getter for the item's name
+     */
+     public String getName() {
+         return name;
+}
+    /*
+     *The getter for the items quantity
+     */
+     public int setQuantity(){
+         return quantity;
+}
+    /*
+     *The getter for the ppu(price per unit) of the items
+     */
+     public double getPricePerUnit(){
+         returnpricePerUnit;
+     }
+}

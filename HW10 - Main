@@ -1,0 +1,13 @@
+As guided in class......
+
+Revisit the COMP 170 phone numbers app and redo it quickly with a Map.  Use the Map interface where possible and pick an implementation concrete class.  Set up the map with the data provided below and in class.  Display the map after all data are entered.
+
+Implement a quick name look up where user enters a name and gets phone number.
+
+Then, time permitting, implement a reverse directory (given phone number, get name)
+
+Of course in both cases, the request may not be found in the map.
+
+Turn in your .java file with working code.
+
+Here are the parallel arrays we used to do it the hard way in COMP 170.

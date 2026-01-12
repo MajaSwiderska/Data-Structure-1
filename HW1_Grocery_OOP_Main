@@ -1,0 +1,3 @@
+From BJP Chapter 8, complete the Programming Project 3.  Add your own third class, called GroceryTester to test the other two classes.  Your test must include at least two different GroceryLists and at least 5 different items being ordered.  Turn in all three classes as separate .java files here.  Write beautiful code using carefully correct Java style. 
+
+Include method header for all key methods and appropriate pre conditions, post conditions, and invariants. Explain how and why the code works.  Include general comments and introduction to the class at the start of the file as block comments. In the test class all input and output should be in main (if you use input and output).

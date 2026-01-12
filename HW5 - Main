@@ -1,0 +1,11 @@
+Follow instructions from class.  Turn in two  .java files here: MyArrayList.java and MyArrayTeaster.java .
+
+Unless updated in class, you need to:
+
+Complete the code from the starter provided: finish the Starter code attached. 
+finish set method 
+finish get method 
+finish set method 
+finish the test code 
+Test your code with a suitable test class
+Remember- you are a good OOP designer.  Keep good encapsulation. Use standard Java doc comments.  Identify constructors, mutators, accessors. Not required but always a good idea = draw UML class diagram(s)

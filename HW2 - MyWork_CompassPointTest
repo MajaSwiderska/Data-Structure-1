@@ -1,0 +1,28 @@
+public class CompassPointTest {
+    public static void main(String[] args) {
+
+        //This should start at N and it should turn 3 times
+        CompassPoint direction = CompassPoint.N;
+        System.out.println("The starting direction: " + direction);
+
+        direction = direction.turnRight();
+        System.out.println("After turning right only once: " + direction); // prints NW
+
+        direction = direction.turnRight();
+        System.out.println("After turning right only 2 times: " + direction); // prints W
+
+        direction = direction.turnRight();
+        System.out.println("After turning right 3 times: " + direction); // prints SW
+
+        //This resets to N
+        direction = direction.reset();
+        System.out.println("After the reset: " + direction);
+
+        //This turns right from NE and should go around to N
+        direction = CompassPoint.NE;
+        System.out.println("Starting direction: " + direction);
+
+        direction = direction.turnRight();
+        System.out.println("After turning right from NE: " + direction); // prints N
+    }
+}

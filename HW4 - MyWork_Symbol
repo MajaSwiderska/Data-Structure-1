@@ -1,0 +1,53 @@
+public enum Symbol {
+    //All of this is enum constant
+    GOOGLE("Alphabet Inc."),
+    APPLE("Apple Inc."),
+    T("AT&T Corp."),
+    VER("Version Communication Inc."),
+    AMAZON("Amazon.com Inc");
+
+    private final String stockName;     //This is a private final field that holds all the company names for each stock symbol
+
+    //This is a constructor for Symbol enum
+    Symbol(String stockName) {
+        this.stockName = stockName;     //This sets the company name for the specific stock symbol
+    }
+
+    /**
+     * A getter for stockName
+     *
+     * @return The company name that's associated with the stock symbol
+     */
+    public String getStockName() {
+        return stockName;       //returns the company name for the stock symbol
+    }
+
+    /**
+     * Used the Override method to give a string representation of the enum constants
+     * This is actually called when it prints an enum constant
+     *
+     * @return A formatted string that contains both the enum constant name and the full company name in ()
+     */
+    @Override
+    public String toString() {
+        return this.name() + " (" + stockName + ") ";
+    }
+
+    /**
+     * A static method to find a Symbol enum constant based on the company name
+     *
+     * @param stockName The company name passed as a string
+     * @return The corresponding Symbol enum constant if the company name matches
+     * @throws IllegalArgumentException if the company name does not match with any of the stock symbol
+     */
+    public static Symbol fromString(String stockName) {
+        for (Symbol sym : Symbol.values()) {
+            //This compares the given stock name
+            if(sym.getStockName().equalsIgnoreCase(stockName)) {
+                return sym;  //This returns the matching Symbol enum constant
+            }
+        }
+        //If it doesn't match with a stock name and isn't found, throws an exception
+        throw new IllegalArgumentException("Stock name not found" + stockName);
+    }
+}

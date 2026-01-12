@@ -1,0 +1,51 @@
+/*
+ *This class represents the list of grocery item orders
+ * List has a size limit of 10
+ * This class allows methods to add the items/get final total/output the items that is in the list
+ */
+public class GroceryList {
+    private GroceryItemOrder[] items;
+    private int size;
+
+    /*
+     * This is a constructor that makes a empty list with a limit of 10 items
+     */
+    public GroceryList() {
+        items = new GroceryList[10];
+        size = 0;
+    }
+
+    /*
+     *This adds the items to the list if there is space left
+     */
+    public void add(GroceryItemOrder item) {
+        if (size < 10) {
+            items[size] = item;
+            size++;
+        } else {
+            System.out.println("Cannot add anymore items due to list being full");
+        }
+    }
+
+    /*
+     *This returns the final total of all the items that is in the list
+     */
+    public double getTotalCost() {
+        double totalCost = 0;
+        for (int i = 0; i < size; i++) {
+            totalCost += items[i].getCost();
+        }
+        return totalCost;
+    }
+
+    /*
+     * This should print the list and the prices and including the final cost of the list all together
+     */
+    public void printList() {
+        for (int i = 0; i < size; i++) {
+            GroceryItemOrder item = items[i];
+            System.out.println(item.getName() + " - " + item.getQuantity() + "units, $ " + item.getPricePerUnit() + "each, Final Total: $" + item.getCost());
+        }
+        System.out.println("Final Total Cost: $ " + getTotalCost());
+    }
+}

@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
+public class SortSelectionInteger {
+    public static void main(String[] args) {
+        //Simple test code, modify as you wish
+        System.out.println("Hello my sorting world!");
+        List a = new ArrayList(List.of(23,18,9,12,7));
+        selectionSort(a);
+        System.out.println(a);
+
+        System.out.println(selectionSort(makeList(100)));
+    }
+
+    /**
+     * A naive selection sort
+     *  Q1:  What is Big-Oh?
+     *  Answer: Basically, selection sort takes O(n^2) time because it checks every element that goes against every other element.
+     *  For a list of size n, it does n times n comparisons and that causes the program to slow down for larger lists.
+     *  So even if the list is sorted to begin with it will still check everything.
+     *  It's also used to describe the performance of an algorithm as the input size increases and that can help us understand how the memory usage or runtime usage of an algorithm scales with larger inputs.
+     *  It focuses on worst case scenarios and compares algorithms
+     *  -------------------------------------------------------------
+     *  Q2:  How would you make it work with a general reference type instead of Integer?
+     *      (say Person, Course, ...)?
+     *      Answer: By using generics because it makes the code flexible and also reusable with other different types or any other custom class without needing to write separate code for each of the types.
+     *      It can also reduce errors and ensures type safety and because of that it can make the code easy to maintain and have some control over it.
+     * --------------------------------------------------------------
+     * @param l any List to be sorted (modified in place) into increasing order
+     * @return the list is returned as well as modified in place
+     * Algorithm:
+     *      Keep List in two parts sorted (lower indexes) and unsorted (higher indexes)
+     *      Loop finding the smallest in the unsorted part
+     *          remove it from unsorted
+     *          add it to sorted
+     *          (you can think of this as moving the boundary between sorted and unsorted to a higher index)
+     */
+    public static List<Integer> selectionSort(List<Integer> l){
+        int smallest;       //the smallest candidate value in the unsorted part
+        int smallestIndex;  //index of the above smallest
+        int temp;           //used to do a swap
+        
+        for (int i=0; i<l.size(); i++){     //'i' is start of the unsorted part
+            smallest = l.get(i);
+            smallestIndex = i;
+
+            // Go through the unsorted part, find the smallest in the unsorted part
+            for (int j=i+1; j<l.size(); j++) {
+                //If there is a smaller element that is found than the current 'smallest'
+                if(l.get(j) < smallest) {
+                    //This updates the 'smallest' and the position
+                    smallest = l.get(j);
+                    smallestIndex = j;
+                }
+            }
+            //Now since the smallest is found in the unsorted section,I'll be swapping it with the element that is at position 'i'
+            temp = l.get(i); //saving the original value that's at i
+            l.set(i, smallest); //Putting the smallest value in the correct section
+            l.set(smallestIndex, temp); //Now moving the old value to where the smallest was
+        }
+        //returning the sorted list
+        return l;
+    }
+
+    /**
+     * Way to make a larger test case with numbers from 0 to howMany-1
+     * @param howMany numbers to put into the list
+     * @return a random list howMany long
+     */
+    public static List<Integer> makeList(int howMany){
+        List myValues = new LinkedList();
+        Random r;
+        r = new Random();
+        for( int i=0; i<howMany; i++){
+            myValues.add(r.nextInt(howMany));
+        }
+        return myValues;
+    }
+}

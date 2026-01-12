@@ -1,0 +1,42 @@
+public class MyArrayListTest {
+    public static void main(String[] args) {
+        //Create a new instance of MyArrayList
+        MyArrayList list = new MyArrayList();
+
+        //Add the elements to the list
+        /*
+         * first test: add method
+         * add elements to the ArrayList
+         * ex. apples, eggs, milk, bread
+         */
+        list.add("apples"); //Added "apples"
+        list.add("eggs"); //Added "eggs"
+        list.add("milk"); //Added "milk"
+        list.add("bread");  //Added "bread"
+
+        //print the list after adding the elements
+        System.out.println("add element test: " + list); //prints apples,eggs,milk,bread
+
+        /*
+         * The second test: set method
+         * Change the string at a specific index
+         */
+        list.set("cheese", 2);
+        //prints the list after using the set method
+        System.out.println("set method test: " + list); //prints apples, eggs, cheese,bread
+
+        /*
+         * third test: get method
+         * Get a string at a specific index
+         */
+        String itemIndex1 = list.get(1); //returns eggs
+        System.out.println("get method test: The item at index 1 is .... " + itemIndex1); //prints eggs
+
+        /*
+         *forth test: size method
+         * get the size of the ArrayList
+         */
+        int size = list.size(); //This returns 4 because there are 4 elements
+        System.out.println("size method test: The size of the list is.... " + size); //prints 4
+        }
+    }

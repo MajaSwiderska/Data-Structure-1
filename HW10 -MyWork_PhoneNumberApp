@@ -1,0 +1,70 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class PhoneNumberApp {
+
+    public static void main(String[] args) {
+        // This initializes with given parallel arrays
+        long[] numbers = {9876543210L, 0, 3129152000L, 9094567890L, 3034061234L, 0, 0, 8133774578L};
+        String[] names = {"Adam Smith", "George Washington", "Alexander Hamilton", "Thomas Payne",
+                "Betsy Ross", "Martha Washington", "Deborah Sampson", "Patience Wright"};
+
+        // name to number
+        Map<String, Long> phoneDirectory = new HashMap<>();
+
+        // number to name
+        Map<Long, String> reverseDirectory = new HashMap<>();
+
+        // Loads the data into our maps
+        for (int i = 0; i < names.length; i++) {
+            if (numbers[i] != 0) { // Only store known numbers no 0
+                phoneDirectory.put(names[i], numbers[i]); //name to number
+                reverseDirectory.put(numbers[i], names[i]); //number to name
+            }
+        }
+
+        // Displays the full directory to the user
+        System.out.println("Phone Directory:");
+        //Iterate through all of our entries in the directory
+        for (Map.Entry<String, Long> entry : phoneDirectory.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        // User interaction (user input)
+        Scanner scanner = new Scanner(System.in);
+
+        // Name search
+        System.out.println("name search");
+        System.out.print("Enter a name: ");
+        String name = scanner.nextLine().trim(); //This reads and clean up the user input
+
+        //This checks if the name exists in the directory
+        if (phoneDirectory.containsKey(name)) {
+            System.out.println("Phone number: " + phoneDirectory.get(name));
+        } else {
+            System.out.println("Name not found in directory");
+        }
+
+        // Reverse search
+        System.out.println("number search");
+        System.out.print("Enter a phone number: ");
+        String input = scanner.nextLine().trim(); //Reads and cleans up user input
+
+        //Converts string input to long for phone number
+        try {
+            long number = Long.parseLong(input); //parseLong converts the text to a number, only works for digit strings
+            if (reverseDirectory.containsKey(number)) {
+                System.out.println("Name: " + reverseDirectory.get(number));
+            } else {
+                System.out.println("Number not found in the directory");
+            }
+        } catch (NumberFormatException e) {
+            //This handles cases where input has no valid number meaning it has non digits, empty or too large
+            System.out.println("Invalid number :(");
+        }
+
+        //Closing it to prevent a leak
+        scanner.close();
+    }
+}

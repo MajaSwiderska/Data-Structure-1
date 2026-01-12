@@ -1,0 +1,109 @@
+import java.util.Stack;
+
+public class SetNode {
+    //data attributes
+    private char contents;
+    private SetNode left;
+    private SetNode right;
+
+    //constructors
+
+    /**
+     * Create a new TreeSet with a single initial node
+     *
+     * @param value the char to be the contents of the node which will be the head of the tree
+     */
+    public SetNode(char value) {
+        contents = value;
+        left = null;
+        right = null;
+    }
+
+    //mutators
+
+    /**
+     * Add (if not currently in the Set) this value, maintaining ordering
+     *
+     * @param value the char to be the value of the newly inserted node
+     * @return boolean true if added; false if already in set
+     */
+    public boolean add(char value) {
+        SetNode current = this; //This is creating a current node and assigned value of this/parent node
+        SetNode parent = null; //This initializes it's parent value to be null
+        SetNode newNode = new SetNode(value); //It creates a new node for the value we need to add to the tree we have
+        if (current == null) { //This is supposed to handle the exception condition when the current node had value null
+            throw new RuntimeException("Empty Set Not Supported");
+        }
+        while (current != null) { //It traverses through the binary tree until it gets to the node where it can add the new node
+            parent = current; //makes the parent the current node
+            if (value < current.contents) { //If the value is less than the value of current node
+                current = current.left; //It needs to search in the left subtree of parent node
+                if (current == null) { //If there is space to add to the new node
+                    //found place for value to left of parent
+                    parent.left = newNode; //Make the new node, node left child of the current node (insert as left child)
+                    return true;
+                }
+            } else if (value > current.contents) { //If the value is greater than the value of the current node
+                current = current.right; //It needs to be traversed to the right subtree of the current node
+                if (current == null) { //If there is space to add the right child of the current node
+
+                    parent.right = newNode; //Add the newNode as the right child of current node
+                }
+                return true;
+
+            } else {  //If the current node is equal to the newNode value then the node is already present in the tree
+                //value already present, do nothing (current is a match)
+                return false;
+            }
+        }
+        throw new RuntimeException("Execution reached impossible point");
+    }
+    //accessors
+    /**
+     * Checking if the set contains a given character
+     * It uses a type of method in a iterative approach to traverse the binary search tree
+     *
+     * @param value the character to search for
+     * @return true if the value is found and false would be otherwise
+     */
+    public boolean contains(char value) {
+        SetNode current = this; //Starting at the root node(represents the parent node)
+        //Traverse the tree to search for the value
+        while (current != null) { //While the current node isn't null
+            if(value < current.contents) { //If the value is smaller than the current node's value
+            current = current.left; //It should move to the left child
+        } else if (value > current.contents) { //If the value is larger than the current node's value
+            current = current.right; //It should move to the right child
+        } else { //If the value match the current node's value
+            return true; //The value is found and it returns true
+        }
+    }
+        //If the loop is completed it means the value hasn't been found
+    return false; //returns false if the value isn't in the set
+}
+    /**
+     * Converts the set into a string representation in a sorted/organized order
+     *
+     * @return a string containing the set elements in a sorted order and are in [] brackets
+     */
+    public String toString(){
+        SetNode current = this; //Starting at the root node
+        Stack<SetNode> s = new Stack<SetNode>();
+        String r = "["; //Initialize result string with an open bracket
+        if (current == null) { //If the tree is empty it should throw an exception
+            throw new RuntimeException("Empty Set Not Supported");
+        }
+        while (current != null || !s.isEmpty()) { //Traversing the tree
+            while (current != null) { //Reaches to the leftmost node
+                s.push(current); //Pushes for the current node to the stack
+                current = current.left; //Moves to the left child
+            }
+            current = s.pop(); //processes the node
+            r = r + current.contents + ", " ; //appends the node's value to the result string
+            current = current.right; //Moves to the right child
+        }
+        //Removes the last comma and space and close the [] brackets
+        return r.substring(0, r.length()-2) + "]"; //Returns the final string representation
+    }
+
+}

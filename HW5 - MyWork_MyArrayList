@@ -1,0 +1,110 @@
+public class MyArrayList {
+
+    private static final int DEFAULT_SIZE = 10;
+    private String[] list;
+    private static final int RESIZE_FACTOR = 2;
+    private int length;         //index to use next time I add
+
+    /**
+     * constructor with initial size given
+     * param@ l
+     */
+    public MyArrayList(int l) {
+        // make sure valid array
+        if(l < 1) {
+            l = DEFAULT_SIZE;
+        }
+        this.list = new String[l];
+        this.length = 0;
+    }
+
+    /**
+     * Default constructor with default size
+     */
+    public MyArrayList() {
+        this(DEFAULT_SIZE);
+    }
+
+    /**
+     * Method add: adding a String to the end of the arrayList
+     * param@ String str
+     */
+    public void add(String str) {
+        // check if we have enough space in our array
+        if(length >= this.list.length) {
+            // creating a larger array
+            String[] tempList = new String[RESIZE_FACTOR *this.list.length];
+            // coping the old array elements into the new array
+            System.arraycopy(list,0, tempList, 0, list.length);
+
+            this.list = tempList;
+        }
+        this.list[length] = str;
+        //increment length after adding new Str
+        length++;
+    }
+    /**
+     * Method set: set the new string in the array at a specific index i
+     * param@ String str The nre string to place at the specific index
+     * param@ int index The index at which to replace the string
+     * @return the old string that we are replacing
+     */
+    public String set(String str, int index) {
+        //Check if the index is valid
+        if(index >= length || index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+        String old = list[index];
+        // add new string
+        list[index] = str;
+        return old;
+
+    }
+
+    /**
+     * Retrieves The string at a specific index in the list
+     * It does throw an exception to the index goes out of bounds
+     * param@ index The index of the element to retrieve/get
+     * return@ The string at the specific index
+     */
+    // get method : gets the string at a specific index / param@ index, returning the String
+    public String get(int index) {
+        //check if the index is valid
+        if(index >= length || index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+        //Return the string at the specific index
+        return list[index];
+    }
+
+    /**
+     * This returns the number of elements that's currently in the list
+     * return@ The size(length) of the list
+     */
+    public int size(){
+        //return the current number of elements in the list
+        return length;
+    }
+    /**
+     * Method to return a string representation of the list
+     * return@ A string representation of the array list
+     */
+    public String toString() {
+        //Handle null or empty array cases
+        if (list == null) {
+            return "null";
+        }
+        if (length == 0) {
+            return "[]";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        sb.append(list[0]); // Append the 1st element
+        for (int i = 1; i < length; i++) {
+            sb.append(", ");
+            sb.append(list[i]); //Append each subsequent element
+        }
+        sb.append(", ");
+        return sb.toString();  //return the formatted string
+    }
+}

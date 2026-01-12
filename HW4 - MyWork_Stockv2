@@ -1,0 +1,165 @@
+// A Stock object represents purchases of shares of a stock.
+
+public class Stockv2 {
+    private final Symbol symbol;    //The stock symbol
+    private int totalShares;       // total shares purchased
+    private double totalCost;     // total cost for all shares
+
+    /**
+     * constructor: Initializes a new Stock with no shares purchased.
+     * This specific constructor is used when I only the stock name
+     * And I want to initialize the object with zero shares/total cost
+     *
+     * @param stockName the name of the stock
+     * @throws IllegalArgumentException if the stock name is invalid (only valid stock name from the symbol enum)
+     * @throws NullPointerException if the provided stock name is null
+     * @ post A new Stock2 obj is made with zero shares/total cost. The stock symbol is set up according to the given stock name
+     */
+    public Stockv2 (String stockName) {
+        if (stockName == null || stockName.isEmpty()) {
+            throw new IllegalArgumentException("Invalid stock name: " + stockName);
+        }
+        this.totalShares = 0;   //no shares
+        this.totalCost = 0.0;   //no cost
+        this.symbol = Symbol.fromString(stockName);   //Converting the name to uppercase and connect to the symbol enum
+    }
+    /**
+     * This is from zoom class,didn't see the point to use it
+        for (Symbol sym : Symbol.values()) {
+            if (sym.getStockName().equals(n)) {
+                s = sym;
+                new Stock2(sym);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Unknown stock name: " + n);
+
+    }
+
+
+
+        /**
+         *Constructor: constructs a new Stock2 obj with specific initial shares/cost
+         * The constructor is used when I know the stocks name and decides to initialize the obj
+         * Only with a specific number of shares/total cost for those shares
+         * @param stockName The name of the stock
+         * @param initialShares the initial number of the shares being purchased
+         * @param initialCost the initial total cost of the shares
+         *
+         * @throws IllegalArgumentException if the stock name is invalid or if initialShares/cost are negative
+         * @ post A new Stockv2 obj is made with the given stock name, number of shares and total costs
+         */
+    public Stockv2(String stockName, int initialShares, double initialCost){
+            //Validate the stock name and ensure it's not empty/null
+            if (stockName == null || stockName.isEmpty()) {
+                throw new IllegalArgumentException("Invalid Stock name: " + stockName);
+            }
+            //This ensures the initial shares/cost are non-negative
+            if (initialShares < 0 || initialCost < 0.0) {
+                throw new IllegalArgumentException("Initial shares/cost must be non-negative ");
+            }
+            //This converts the stock name to a symbol enum using the fromStringMethod (The method is used to provide string rep of an object)
+            this.symbol = Symbol.fromString(stockName);   //Getting the corresponding symbol enum
+            this.totalShares = initialShares;   //starts with provided number of shares
+            this.totalCost = initialCost;   //starts with provided total cost
+        }
+
+            /**
+             *This records a new purchase of shares at a given price
+             * The method adds more shares to the stock, it can update the total cost based on the number of shares
+             * And also the price per share at the time of the purchase
+             *
+             * @param shares The number of shares purchased,but it must be a non-negative number
+             * @param pricePerShare The price per share at the time of purchase, it also must be a non-negative value
+             * @throws IllegalArgumentException if the number of shares or price per share is negative and only negative
+             * @ post The stocks total shares/cost are updated to look over the new purchase
+             */
+        public void purchase(int shares, double pricePerShare) {
+            //This validates the input for shares/price
+            if (shares < 0 || pricePerShare < 0.0) {
+                throw new IllegalArgumentException("The shares and price per share must be non-negative.");
+            }
+            //This updates the total shares/cost
+            this.totalShares += shares;                 //This adds the purchased shares to the total
+            this.totalCost += shares * pricePerShare;   //This adds the total cost of the new shares to the final cost
+        }
+
+        /**
+         * This calculates the profit/loss of this stock based ib the current price per share
+         * The profit/loss is calc by subtracting the total cost of the shares from the market value
+         * And the current price per share is multiplied by the total number of shares
+         *Accessor: This returns the total profit or loss earned on this current stock
+         * @param currentPrice the current price per share of the stock, must be a non-negative value
+         * @return the total profit or loss -> (market value - total cost)
+         * @throws IllegalArgumentException if only the currentPrice < 0.0 or is negative
+         * @ post The profit/loss is calc based on the current price
+         */
+        public double getProfit(double currentPrice){
+            //This validates that the current price is non-negative
+            if (currentPrice < 0.0) {
+                throw new IllegalArgumentException("Current price can't be negative. ");
+            }
+            //This calc the profit/loss
+            return (currentPrice * totalShares) - totalCost;
+        }
+        /**
+         * Accessor: Gets the symbol of the stock
+         * @return The symbol of the stock, from the symbol enum
+         */
+        public Symbol getSymbol() {
+            return symbol;
+        }
+        /**
+         * Accessor: This returns the total number of shares that has been purchased
+         * Returns the total number of shares
+         */
+        public int getTotalShares() {
+            return totalShares;
+        }
+        /**
+         * Accessor: This returns the total cost of every shares that's been purchased
+         * Return the total cost of all shares
+         */
+        public double getTotalCost() {
+            return totalCost;
+        }
+        /**
+         * This compares the stock to another object for equality
+         * The two stocks are considered equal if they have the same symbol, name, number of shares and total cost
+         *
+         * @param obj The object to compare with
+         * @return true if the 2 stocks are equal and false otherwise
+         */
+        @Override
+        //Reason why I used the Override method is because in this instance I wanted 2 Stockv2 obj to be equal if they have same symbol, shares and costs. In order to do that I override the equals() method to give a comparison based on these specific fields.
+        //In this case if the 2 obj are the same = true, if obj null = false, otherwise it compares the content of the 2 obj.
+        public boolean equals(Object obj) {
+            //This checks if both of the obj are the same
+            if (this == obj) {
+                return true;
+            }
+            //This checks if the object is null or belongs to a different class
+            //Used to getClass() to check if the 2 obj are the same class
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            //This casts the obj to Stockv2 for longer detailed comparison
+            Stockv2 otherStock = (Stockv2) obj;
+
+            //This compares stock symbol, the total shares, and total costs
+            return this.getSymbol().equals(otherStock.getSymbol()) && this.getTotalShares() == otherStock.getTotalShares() && Double.compare(this.getTotalCost(), otherStock.getTotalCost()) == 0;
+        }
+
+        /**
+         * This returns a string rep of the Stock2 obj
+         * The String does contain the stocks symbol, name, number of shares/cost in a formatted way
+         *
+         * @return A formatted string that is containing the stocks symbol, name, total shares/cost
+         */
+        @Override
+        //The reason why I used Override in this instance is because the toString() method is defined as an obj class. So by overriding the toString() method is give a good string rep for the Stockv2 objects.
+        //I override to ensure that Stockv2 prints in an appropriate way
+        public String toString() {
+             return symbol + ": " + totalShares + " shares, Total Cost: $" + String.format("%.2f", totalCost);
+        }
+    }

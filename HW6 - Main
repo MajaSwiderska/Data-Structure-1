@@ -1,0 +1,11 @@
+Follow instructions from class.  Turn in you .java files here: MyArrayListGeneric.java and MyArrayListGenericTester.java.
+
+The To Do if not finished during class: 
+
+Implement Generics <E>
+rewrite : add() method, set() method, get() method implementing Generics
+Remove(int index) method 
+IndexOf(E o) method 
+Contains(E o) method 
+Test the three methods - remove(), indexOf(), contains()  You can still let it end with an exception when a call is made with index our of bounds.
+Remember- you are a good OOP designer.  Keep good encapsulation. Include correct and complete Java doc comments for each method.  Not required but always useful: draw an UML class diagram.

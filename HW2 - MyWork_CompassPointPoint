@@ -1,0 +1,30 @@
+import java.util.Arrays;
+public enum CompassPoint {
+    //This is the constants that represents the directions on the compass(8 points)
+    N, NW, W, SW, S, SE, E, NE;
+
+    //This is a method to turn clockwise
+    public CompassPoint turnRight() {
+        return values() [(this.ordinal() + 1) % values().length]; //This is getting the next direction in the enum
+    }
+    //This method resets to North and only North
+    public CompassPoint reset() {
+        return N;
+    }
+
+
+    public static void main(String[] args) {
+        CompassPoint [] allPoints = CompassPoint.values(); //Putting the directions in a array
+        CompassPoint [] mainPoints = {N, W, S, E}; //Both this and the bottom line is me defining the arrays for the main compass points and also in-between
+        CompassPoint [] inBetween = {NW, SW, SE, NE};
+        System.out.println("What each letter means: N(North), NW( North-West), W(West), SW(South-West), S(South), SE(South-East), E(East), NE(North-East) "); //Printing out what each letter stands for
+
+
+        System.out.println(Arrays.toString(allPoints)); //This prints out all the compass points
+        System.out.println("Here are the main points on the compass: " + Arrays.toString(mainPoints)); //This prints the main 4 compass directions
+        System.out.println("Here are the points in-between the main points: " + Arrays.toString(inBetween)); //This prints the in-between points
+        System.out.println("This is all the points together in total: " + Arrays.toString(allPoints)); //This prints out all the points together
+        System.out.println("These are all the basic compass points! :) "); //Just me closing the program nicely and letting know the user that the code is done running
+
+    }
+}

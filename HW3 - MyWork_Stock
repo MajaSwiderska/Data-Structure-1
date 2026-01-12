@@ -1,0 +1,106 @@
+// A Stock object represents purchases of shares of a stock.
+
+public class Stock {
+    private String symbol;        // stock symbol, e.g. "YHOO"
+    private int totalShares;      // total shares purchased
+    private double totalCost;     // total cost for all shares
+
+
+    // Precondition: symbol != null
+
+    /**
+     * constructor: Initializes a new Stock with no shares purchased.
+     *
+     * @param symbol the stock symbol
+     * @ pre symbol != null
+     * @ post a new stock object is created with totalShares = 0 and totalCost = 0.0
+     * @throws NullPointerException if the symbol is only null
+     */
+    public Stock(String symbol) {
+        if (symbol == null) {
+            throw new NullPointerException();
+        }
+
+        this.symbol = symbol;
+        totalShares = 0;
+        totalCost = 0.0;
+    }
+    /**
+     *Constructor: This initializes the new Stock with initial costs/shares
+     * @param symbol (Stock symbol)
+     * @param initialShares the initial number of the shares being purchased
+     * @param initialCost the initial total cost of the shares
+     * @ pre symbol != null && initialShares >= 0 && initialCost >= 0.0
+     * @ post a new stock object is created with the initial costs/shares
+     * @throws NullPointerException if only the symbol is null
+     * @throws IllegalArgumentException if initial shares/cost < 0 or 0.0
+     */
+    public Stock(String symbol, int initialShares, double initialCost) {
+        if (symbol == null) {
+            throw new NullPointerException("Symbol can't be null.");
+        }
+        if (initialShares < 0 || initialCost < 0.0) {
+            throw new IllegalArgumentException("Initial shares/costs have to be non-negative.");
+        }
+        this.symbol = symbol;
+        this.totalShares = initialShares;
+        this.totalCost = initialCost;
+    }
+
+    /**
+     *Accessor: This returns the total profit or loss earned on this current stock, but based on the given pps (price per share)
+     * @param currentPrice the current price per share of the stock
+     * @return the total profit or loss -> (market value - total cost)
+     * @ pre currentPrice >= 0.0
+     * @ post the profit or loss is calc and returned to the user
+     * @throws IllegalArgumentException if only the currentPrice < 0.0
+     */
+    public double getProfit(double currentPrice) {
+        if (currentPrice < 0.0) {
+            throw new IllegalArgumentException("Current price can't be negative. ");
+        }
+
+        double marketValue = totalShares * currentPrice;
+        return marketValue - totalCost;
+    }
+    /**
+     * mutator:  Records a purchase by adding number of shares at the given price.
+     *
+     * @param shares the number of shares purchased
+     * @param pricePerShare the price per share
+     * @ pre shares >= 0 && pricePerShare >= 0.0 (checked, may throw IllegalArgumentException)
+     * @ post totalShares and totalCost are updated to overview the purchase
+     * @throws IllegalArgumentException if the shares < 0 or pricePerShare < 0.0
+     */
+    public void purchase(int shares, double pricePerShare) {
+        if (shares < 0 || pricePerShare < 0.0) {
+            throw new IllegalArgumentException("The shares and price per share must be non-negative.");
+        }
+
+        totalShares += shares;
+        totalCost += shares * pricePerShare;
+    }
+
+        /*
+         * Accessor: This returns the stock symbol
+         * returns stock symbol
+         */
+        public String getSymbol() {
+            return symbol;
+        }
+        /*
+         * Accessor: This returns the total number of shares that has been purchased
+         * Returns the total number of shares
+         */
+        public int getTotalShares() {
+            return totalShares;
+        }
+        /*
+         * Accessor: This returns the total cost of every shares that's been purchased
+         * Return the total cost of all shares
+         */
+         public double getTotalCost() {
+             return totalCost;
+        }
+    }
+

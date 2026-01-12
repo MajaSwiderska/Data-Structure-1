@@ -1,0 +1,31 @@
+/*
+ * This class is the tester where all my items are given a name/quantity and price per unit
+ * At the end it should print me the list with all the prices and final cost along with detail labeling
+ * This class also creates me a list
+ * I created random items that I enjoy to eat so it can look similar to my everyday list
+ */
+public class GroceryTester {
+
+    public static void main(String[] args) {
+        GroceryItemOrder item1 = new GroceryItemOrder("Eggs", 1, 4.08);
+        GroceryItemOrder item2 = new GroceryItemOrder("Oat Milk", 2, 2.78);
+        GroceryItemOrder item3 = new GroceryItemOrder("Bread", 1, 6.89);
+        GroceryItemOrder item4 = new GroceryItemOrder("Kiwi", 5, 0.89);
+        GroceryItemOrder item5 = new GroceryItemOrder("Chicken", 3, 7.99);
+        GroceryItemOrder item6 = new GroceryItemOrder("Mango", 4, 4.69);
+        GroceryItemOrder item7 = new GroceryItemOrder("Rice", 1, 6.98);
+
+        //This should create a list
+        GroceryList list1 = new GroceryList();
+        list1.add(item1);
+        list1.add(item2);
+        list1.add(item3);
+        list1.add(item4);
+        list1.add(item5);
+        list1.add(item6);
+        list1.add(item7);
+
+        //This should print me a list
+        list1.printList();
+    }
+}

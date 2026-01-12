@@ -1,0 +1,9 @@
+Expand your prior work on the compass enum and turn in an updated one.  The updates include making it into a proper OOP enum with operations or behaviors.
+
+First, fix any errors in your prior work (see my comments).  If you did not complete the prior assignment see below and do it now.
+Add a behavior to turnRight - it goes to the next compass direction in your enum going CLOCKWISE around the compass. Make sure you can "wrap around" and get back to NORTH.
+Add a behavior to reset (that returns to NORTH)
+Test with at least three uses of turnRight and at least one of reset and print out the direction each time.
+Your code in a .java file should still be an enum; turn in here. Turn in a separate CompassTest class with your main. Since you are writing Beautiful Code, be sure your think about your test cases EARLY and know how you will determine if the results are correct or not.
+
+DOCUMENT your test cases including the expected output in main.

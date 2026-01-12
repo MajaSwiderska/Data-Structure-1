@@ -1,0 +1,11 @@
+Please submit your updated Stock class the works with Symbol enum following the instructions given in class. Submit 3 .java files. Full code the runs is required.  Beautiful Code is required. Java doc is required. Good Encapsulation is required!
+
+In addition to the three .java files, also submit a text document (as .pdf) with 1) Your Own Definition of Encapsulation (see OneNote) and 2) Your Evaluation of the Code you completed here using your own definition.  Give yourself a grade from A to F.  Say why.
+
+You can call your class Stock or Stockv2 just be sure it compiles and runs with the other items.
+
+Stock class:  include all the original items from the starting code. Replace the text stock name with the Symbol enum. Include your additional method you decided to add. Include proper toString and equals.  Full java doc for all methods. 
+
+Symbol enum: must be enum with constructor.  Include at least 5 stocks. Include toString that gives similar to T (AT&T Corp)
+
+StockTester class: main with at least 5 Stock objects, some created with symbol from enum, at least two created with user entry of stock name (eg AT&T Corp). At least one stock has two purchases. At least one stock has no purchases. At least one stock has a single purchase. Print out all 5 stocks showing symbol, full name, number of shares, total cost.

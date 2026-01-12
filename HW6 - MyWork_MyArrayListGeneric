@@ -1,0 +1,178 @@
+public class MyArrayListGeneric<E>{
+    /**
+     * STARTER CODE
+     * A simple implementation of ArrayList to show how encapsulation
+     * works in the Java Collections
+     * <p>
+     * An introduction to creating your own Java Generic
+     * <p>
+     * Some possible methods (you must add or complete those assigned in class) (do others as you wish!)
+     * get(index), add(), set(index, E), remove(index), toString(), size(), contains(E), equals, indexOf(Object o), compareTo(Object o)
+     *
+     * @invariant: (class level) length < list.length   (add must copy old list and maintain)
+     */
+
+    //data attributes for MyArrayList
+    private static final int DEFAULT_SIZE = 10;     //default size of the list
+    private E[] list;       //the array to store the s
+    private int RESIZE_FACTOR = 2;      //The factor by which the array size will grow when the list is at it's max
+    private int length;  //index to use next time I add
+
+    /**
+     * Constructor with initial size given
+     * initializes the list with the given size
+     *
+     * @param l It's the initial size of the array list
+     */
+    public MyArrayListGeneric(int l) {
+        //make sure the size is valid
+        if(l < 1) {
+            l = DEFAULT_SIZE;   //default to 10 if the invalid size is provided
+        }
+        list = (E[]) new Object[l];     //creates the array of type E
+        length = 0;     //no elements initially
+    }
+
+    /**
+     * Constructor with default size of 10
+     * Initializes the list with the default size
+     */
+    public MyArrayListGeneric() {
+        this(DEFAULT_SIZE);
+    }
+
+    /**
+     * Method add:  adding element at the end of the list
+     * If there is not a lot of space left, the list resizes itself
+     *
+     * @param o the element to add
+     */
+    public void add(E o) {
+        //do we have enough space to add?
+        if (length >= list.length) {
+            E[] tempList = (E[]) new Object[RESIZE_FACTOR * list.length];   //creates a larger array
+            for (int i = 0; i < this.list.length; i++) {
+                tempList[i] = this.list[i];     //copy the old elements to the new array
+            }
+            this.list = tempList;     //Updates the list to direct to the new array
+        }
+        this.list[length] = o;     //Adds the new element at the end
+        length++;       //It increments the length of the list
+    }
+
+
+    /**
+     * Method set: setting the new element in the array at a specific index
+     * Returns the old element that was replaced
+     *
+     * @param o the element to set
+     * @param index the index where to set the element itself
+     * @return the old element
+     */
+    public E set(E o, int index) {
+        if(index >= length || index < 0) {
+            throw new IndexOutOfBoundsException("invalid value: " + index); //This checks if this is a valid index
+        }
+        E old = this.list[index];  //Stores the old element
+        //set the new element at the specific index
+        this.list[index] = o;  //Sets the new element
+        return old;   //This returns the old element
+    }
+
+    /**
+     * Method get: getting the element value at the position index
+     *
+     * @param index the index from which to get the element
+     * @return element at the given index
+     */
+    public E get(int index) {
+        if (index >= length || index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index); //This ensures this is a valid index
+        }
+        return  this.list[index];   //Returns the element at the given index
+    }
+
+    /**
+     * Method size : get the size of the arraylist
+     *
+     * @return int - size of the arraylist
+     */
+    public int size(){
+        return length;  //This returns the current number of elements
+    }
+
+    /**
+     * Method remove : remove element from the list at a specific index
+     * Shifts the elements after the removed element to fill in the space
+     *
+     * @param index the index of the element to remove
+     * @return element
+     * used codestepbystep as an example for this part
+     */
+    public E remove(int index) {
+        if(index >= length || index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+        E removedElement = list[index];  //Stores the removed element
+
+        //This shifts the elements to fill in the space left by the removed element
+        for(int i = index; i < length - 1; i++) {
+            list[i] = list[i + 1];
+        }
+        //Nullifying the last element to prevent memory leak to makes sure the list is still consistent
+        //After removing an element the last position is still holding a reference to the old data
+        //So setting it to null allows the memory to be reclaimed, it avoids unwanted references
+        list[length - 1] = null;  //Saw this on the internet, this is supposed to nullify the last element to avoid a memory leak
+        length--;  //decrement the list length
+        return removedElement;  //returns the removed element
+    }
+
+
+    /**
+     * Method indexOf : give the index of the element in the list
+     *
+     * @param o the element to find
+     * @return index of the element  or -1 if not found
+     */
+    public int indexOf(Object o) {
+        for(int i = 0; i < length; i++) {
+            if(list[i].equals(o)) {   //Compares the elements using equals()
+                return i; //returns the index of the 1st match
+            }
+        }
+        return -1;  //returns -1 if the element is not found
+    }
+
+    /**
+     * Method contains : gives a boolean if the element exist in the list
+     *
+     * @param o the element to check for it's existence
+     * @return boolean Returns true if the element is in the list, false otherwise
+     */
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;  //Using the indexOf to check if the element still exists
+    }
+
+    public String toString(){
+        if (list == null) {
+            return "null";
+        }
+
+        if (list.length == 0) {
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        sb.append(list[0]);
+
+        for (int i = 1; i < list.length; i++) {
+            sb.append(", ");
+            sb.append(list[i]);
+        }
+
+        sb.append(']');
+        return sb.toString();
+    }
+
+}
